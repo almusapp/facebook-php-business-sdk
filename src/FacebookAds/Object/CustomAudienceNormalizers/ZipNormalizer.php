@@ -46,6 +46,6 @@ class ZipNormalizer implements ValueNormalizerInterface {
   public function normalize($key, $key_value) {
     return explode(
       '-',
-      preg_replace('/[ ]/', '', strtolower(trim($key_value))))[0];
+      (string) preg_replace('/[ ]/', '', strtolower(trim($key_value))))[0];
   }
 }

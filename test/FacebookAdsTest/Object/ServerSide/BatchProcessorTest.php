@@ -33,6 +33,26 @@ use GuzzleHttp\Promise;
 use Mockery as m;
 
 class BatchProcessorTest extends AbstractUnitTestCase {
+  /**
+   * @var \FacebookAds\Object\ServerSide\UserData|mixed
+   */
+  public $user_data;
+  /**
+   * @var \FacebookAds\Object\ServerSide\Event|mixed
+   */
+  public $event;
+  /**
+   * @var mixed|string
+   */
+  public $pixel_id;
+  /**
+   * @var mixed|string
+   */
+  public $test_event_code;
+  /**
+   * @var \FacebookAds\Object\ServerSide\BatchProcessor|mixed
+   */
+  public $batch_processor;
   protected function setUp(): void {
     $this->user_data = (new UserData())->setEmail('joe@eg.com');
     $this->event = (new Event())

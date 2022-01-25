@@ -37,7 +37,7 @@ abstract class Util {
    */
   public static function parseUrlQuery($query_string) {
     $query = array();
-    $pairs = explode('&', $query_string);
+    $pairs = explode('&', (string) $query_string);
     foreach ($pairs as $pair) {
       list($key, $value) = explode('=', $pair);
       $query[$key] = urldecode($value);

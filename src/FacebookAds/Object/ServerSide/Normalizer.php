@@ -156,7 +156,7 @@ class Normalizer {
   private static function normalizeCountry($country) {
     $result = preg_replace('/[^a-z]/i', '', $country);
 
-    if (strlen($result) != 2) {
+    if (strlen((string) $result) != 2) {
       throw new InvalidArgumentException('Invalid country format passed(' . $country . '). Country Code should be a two-letter ISO Country Code');
     }
 
@@ -172,7 +172,7 @@ class Normalizer {
     $zip = preg_replace('/[ ]/', '', $zip);
 
     // If the code has more than one part, retain the first part.
-    $zip = explode('-', $zip)[0];
+    $zip = explode('-', (string) $zip)[0];
     return $zip;
   }
 
@@ -197,7 +197,7 @@ class Normalizer {
   private static function normalizeCurrency($currency) {
     $result = preg_replace('/[^a-z]/i', '', $currency);
 
-    if (strlen($result) != 3) {
+    if (strlen((string) $result) != 3) {
       throw new InvalidArgumentException('Invalid currency format passed(' . $currency . '). Currency Code should be a three-letter ISO Currency Code');
     }
 
@@ -297,7 +297,7 @@ class Normalizer {
    */
   private static function isInternationalNumber($phone_number) {
     // Remove spaces and hyphens
-    $phone_number = preg_replace('/[\-\s]/', '', $phone_number);
+    $phone_number = preg_replace('/[\\-\s]/', '', $phone_number);
 
     // Strip + and up to 2 leading 0s
     $phone_number = preg_replace('/^\+?0{0,2}/', '', $phone_number);
@@ -309,7 +309,7 @@ class Normalizer {
     // International Phone number with country calling code.
     $international_number_regex = '/^\d{1,4}\(?\d{2,3}\)?\d{4,}$/';
 
-    return preg_match($international_number_regex, $phone_number);
+    return preg_match($international_number_regex, (string) $phone_number);
   }
 
   /**

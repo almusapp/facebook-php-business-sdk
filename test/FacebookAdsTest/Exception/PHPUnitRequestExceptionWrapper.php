@@ -29,6 +29,7 @@ use FacebookAds\Http\Exception\RequestException;
 class PHPUnitRequestExceptionWrapper
   extends \PHPUnit_Framework_ExceptionWrapper {
 
+  public $previous;
   /**
    * @var RequestException
    */

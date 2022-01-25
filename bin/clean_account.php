@@ -101,7 +101,7 @@ $reflection = new ReflectionClass($account);
 foreach ($reflection->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
   if (
     strncasecmp($method->getName(), 'get', 3) !== 0
-    || preg_match('/@return\s+Cursor/', $method->getDocComment()) !== 1
+    || preg_match('/@return\s+Cursor/', (string) $method->getDocComment()) !== 1
   ) {
     continue;
   }

@@ -59,7 +59,7 @@ class CurlAdapterTest extends AbstractAdapterTest {
     $headers = $this->createHeadersMock();
     $this->makeMockIterable($headers, array(
       'X-custom-header' => 'header value',
-    ));
+    ), false);
 
     $query = $this->createParametersMock(array(
       'param' => 'value',

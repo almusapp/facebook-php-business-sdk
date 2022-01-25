@@ -178,10 +178,11 @@ class CursorTest extends AbstractUnitTestCase {
 
   /**
    * @dataProvider responseDataStructureProvider
-   * @expectedException \InvalidArgumentException
    * @param mixed $content
    */
   public function testResponseDataStructure($content) {
+    $this->expectException(\InvalidArgumentException::class);
+
     $response = $this->createResponseMock();
     $response->method('getContent')->willReturn($content);
 

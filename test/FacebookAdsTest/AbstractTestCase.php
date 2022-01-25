@@ -99,14 +99,16 @@ class AbstractTestCase extends TestCase {
    * @param mixed $mock
    * @param array $data
    */
-  protected function makeMockIterable(
-    $mock, array $data = array()) {
+  protected function makeMockIterable($mock, array $data = array(), bool $withExport = true)
+  {
 
     /** @var Mock $mock */
     $mock->method('count')->willReturn(count($data));
     $mock->method('getIterator')->willReturn(new \ArrayIterator($data));
     $mock->method('getArrayCopy')->willReturn($data);
-    $mock->method('export')->willReturn($data);
+    if ($withExport) {
+        $mock->method('export')->willReturn($data);
+    }
   }
 
   /**

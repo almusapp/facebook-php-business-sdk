@@ -158,7 +158,7 @@ class TypeChecker {
 
   private function startsWith($string, $prefix) {
     return $prefix === "" ||
-      strrpos($string, $prefix, -strlen($string)) !== false;
+      strrpos($string, (string) $prefix, -strlen((string) $string)) !== false;
   }
 
   public function isListParam($param) {
@@ -183,12 +183,12 @@ class TypeChecker {
   }
 
   public function isTypeCollection($type, $collection) {
-    $len_of_collection = strlen($collection);
+    $len_of_collection = strlen((string) $collection);
     $typeCollection = substr($type, 0, $len_of_collection);
     return ($collection === $typeCollection);
   }
 
   public function getTypeFromCollection($type, $collection) {
-    return explode(",", trim(substr($type, strlen($collection)), "<>"));
+    return explode(",", trim(substr($type, strlen((string) $collection)), "<>"));
   }
 }

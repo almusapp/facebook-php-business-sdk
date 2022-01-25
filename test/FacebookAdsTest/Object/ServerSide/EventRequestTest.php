@@ -39,6 +39,26 @@ use FacebookAds\Object\ServerSide\Util;
 use Mockery as m;
 
 class EventRequestTest extends AbstractUnitTestCase {
+  /**
+   * @var mixed|string
+   */
+  public $expected_pixel_id;
+  /**
+   * @var mixed|string
+   */
+  public $expected_url;
+  /**
+   * @var array<string, string>|mixed
+   */
+  public $expected_headers;
+  /**
+   * @var mixed|string
+   */
+  public $expected_access_token;
+  /**
+   * @var mixed[]|mixed
+   */
+  public $expected_curl_options;
   protected function setUp(): void {
     $this->expected_pixel_id = 'pixel-1000';
     $this->expected_url = 'https://graph.facebook.com/v'

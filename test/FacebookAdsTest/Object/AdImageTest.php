@@ -38,10 +38,9 @@ class AdImageTest extends AbstractCrudObjectTestCase {
     $this->assertCanDelete($image);
   }
 
-  /**
-   * @expectedException \Exception
-   */
   public function testZipFileInNormalCreate() {
+    $this->expectException(\Exception::class);
+
     $image = new AdImage(null, $this->getConfig()->accountId);
     $image->{AdImageFields::FILENAME}
       = $this->getConfig()->testZippedImagesPath;

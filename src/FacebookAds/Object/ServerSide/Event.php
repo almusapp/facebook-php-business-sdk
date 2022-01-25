@@ -322,7 +322,7 @@ class Event implements ArrayAccess {
    * @param integer $offset Offset
    * @return boolean
    */
-  public function offsetExists($offset) {
+  public function offsetExists($offset): bool {
     return isset($this->container[$offset]);
   }
 
@@ -331,8 +331,10 @@ class Event implements ArrayAccess {
    * @param integer $offset Offset
    * @return mixed
    */
-  public function offsetGet($offset) {
-    return isset($this->container[$offset]) ? $this->container[$offset] : null;
+  #[\ReturnTypeWillChange]
+  public function offsetGet($offset)
+  {
+      return isset($this->container[$offset]) ? $this->container[$offset] : null;
   }
 
   /**
@@ -341,7 +343,7 @@ class Event implements ArrayAccess {
    * @param mixed $value Value to be set
    * @return void
    */
-  public function offsetSet($offset, $value) {
+  public function offsetSet($offset, $value): void {
     if (is_null($offset)) {
       $this->container[] = $value;
     } else {
@@ -354,7 +356,7 @@ class Event implements ArrayAccess {
    * @param integer $offset Offset
    * @return void
    */
-  public function offsetUnset($offset) {
+  public function offsetUnset($offset): void {
     unset($this->container[$offset]);
   }
 
@@ -381,7 +383,7 @@ class Event implements ArrayAccess {
       'action_source',
       $this->container['action_source']
     );
-    $normalized_payload = array_filter($normalized_payload, function($val) { if(is_array($val)) { return true; } else { return strlen($val); }});
+    $normalized_payload = array_filter($normalized_payload, function($val) { if(is_array($val)) { return true; } else { return strlen((string) $val); }});
     // Add the opt_out value back in if it was filtered out
     if ($this->getOptOut() === false) {
       $normalized_payload['opt_out'] = $this->getOptOut();
